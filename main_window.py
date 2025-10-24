@@ -20,7 +20,9 @@ class MainWindow(tk.Frame):
         self.vram.set_pixel(7, 7, 0, 255, 0)
         self.vram.set_pixel(2, 7, 0, 0, 255)
         self.vram.set_pixel(7, 2, 255, 255, 255)
-        self.image_panel.set_image(self.vram.get_image())
+
+        # wait until the window is drawn before updating image
+        self.after(100, lambda: self.image_panel.set_image(self.vram.get_image()))
 
     def initialize(self):
         self.master.title("Raster Graphics")
